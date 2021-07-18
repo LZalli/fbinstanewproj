@@ -286,15 +286,7 @@ var obj = JSON.parse(text);
 var values = obj.data ;
 res.json(obj.data);
 //res.render('table', { data: values});
-MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
-  // Client returned
-  var db = client.db('mytestingdb');
-  db.collection("facebook").insertMany(values, function(err, res) {  
-    if (err) throw err;  
-    console.log("1 record inserted");  
-    client.close();  
-    });  
-})
+
 })
 
 .catch(err => {

@@ -150,101 +150,7 @@ router.get('/', function(req, res){
   
 
 });
-router.get('/postid', function(req, res){
-  var idd =fetch('https://graph.facebook.com/v10.0/'+pageid+'?fields=posts&access_token='+ tokken)
-  .then(res => res.json())
-  .then((json)=>{
-  jsonfile = json.posts.data;
-  console.log(jsonfile)
-  var i;
-  some_array = [];
-  for(i = 0; i < jsonfile.length; i++) {
-      postidss = jsonfile[i].id;
-   some_array.push(postidss);
-  }
-  
-  console.log(some_array);
-  listlist = [];
-  var j;
- for (j = 0; j < some_array.length; j++) {
- var posmec = fetch('https://graph.facebook.com/v10.0/'+some_array[j]+'/?fields=attachments{media},reactions.summary(true)&access_token='+thenewfbtoken+'')
- .then(res => res.json())
- .then(json => console.log('le post en question : '  + json.id  +  '   nombre des reactions du post : ' + json.reactions.summary.total_count))
-  } 
-  res.render('classement');
 
-  
-  });
-});
-
-router.get('/usrinf', function(req, res){
-  var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
-  .then(res => res.json())
-  .then((json)=>{
-  thenewfbtoken = json.access_token;
-  
-  var infuser =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_fans_country,page_fans_city,page_fans_gender_age')
- .then(res => res.json())
- .then((json)=>{
-  // console.log(infuser)
-   //console.log('le nom du metric est:' + json.data[0].name +' et les valuers du metric sont : '+json.data[0].values[1])
-   //console.log('le nom du metric est:' + json.data[1].name  +' et les valuers du metric sont : '+ json.data[1].values[1])
-   //console.log('le nom du metric est:' + json.data[2].name  +' et les valuers du metric sont : '+ json.data[2].values[1])
-//console.log(json.data[0].values[1].value)
-var page_fans_country = json.data[0].name;
-var page_fans_city = json.data[1].name;
-var page_fans_gender_age = json.data[2].name;
-var countrydetails = json.data[0].values[1].value;
-var citydetails = json.data[1].values[1].value;
-var agedetails =json.data[20].values[1].value; 
-//console.log('page_fans_country : '+page_fans_country+ ' les valeurs '+ infdetails)
-  //jsonfile = json.values;
- //console.log(jsonfile)
-});
-});
-});
-
-
-router.get('/ranking', function(req, res){
-  var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
-  .then(res => res.json())
-  .then((json)=>{
-  thenewfbtoken = json.access_token;
-  
-  var rank =fetch('https://graph.facebook.com/v10.0/'+pageid+'/posts?fields=followers_count,full_picture,created_time,shares,likes.summary(true),comments.limit(0).summary(true).limit(0),insights.metric(post_reactions_like_total,post_reactions_love_total,post_reactions_wow_total,post_reactions_haha_total,post_reactions_sorry_total,post_reactions_anger_total,post_clicks,post_engaged_users,post_impressions_unique)&access_token='+thenewfbtoken+'&limit=100')
- .then(res => res.json())
- .then((json)=>{
-console.log(json.data[0])
-var i ; 
-var tabp = [];
-for (i = 0; i < json.data.length; i++) {
-/*
-console.log('---------------------------------------------------------------------------------')
-console.log('post id : ' + json.data[i].id) 
-console.log('total shares : ' + json.data[i].shares.count)
-console.log('total likes : ' + json.data[i].likes.summary.total_count)
-console.log('total comments : ' + json.data[i].comments.summary.total_count)
-//console.log(json.data[i].insights.data[0].values[0].value)
-console.log('post clicks :' + json.data[i].insights.data[6].values[0].value)
-console.log('post engaged users :' + json.data[i].insights.data[7].values[0].value)
-console.log('post_impressions_unique :' + json.data[i].insights.data[8].values[0].value)  */
-var toty = json.data[i].insights.data[0].values[0].value + json.data[i].insights.data[1].values[0].value + json.data[i].insights.data[2].values[0].value + json.data[i].insights.data[3].values[0].value + json.data[i].insights.data[4].values[0].value + json.data[i].insights.data[5].values[0].value
-//onsole.log('post reaction total : ' + toty )
-//console.log('---------------------------------------------------------------------------------')
-
-
-
-var myArray = {p_id: json.data[i].id, likes: json.data[i].likes.summary.total_count, comments :  json.data[i].comments.summary.total_count, clicks : json.data[i].insights.data[6].values[0].value, engaged_users : json.data[i].insights.data[7].values[0].value, post_impr : json.data[i].insights.data[8].values[0].value,  reaction_total : toty };
-tabp.push(myArray)
-
-}
-//console.log(tabp.sort(function (a, b) {
- // return b.post_impr - a.post_impr;
-//}))
-
-});
-});
-});
 
 
 router.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email'] }));
@@ -262,6 +168,359 @@ router.get('/auth/facebook/callback',
 });
 
 
+router.post('/postmetrics' , (req,res) => {
+  var pageid = req.body.pageid;
+ // console.log(pageid);
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+.then(res => res.json())
+.then((json)=>{
+thenewfbtoken = json.access_token;
+
+//console.log('tokenp'+thenewfbtoken);
+ // console.log('tokenp'+thenewfbtoken)
+var startdate = req.body.startdate;
+  var enddate = req.body.enddate;
+var htt =fetch('https://graph.facebook.com/v10.0/'+postid+'/insights/post_engaged_users,post_negative_feedback,post_engaged_fan,post_clicks,post_impressions,post_impressions_paid,post_impressions_fan,post_impressions_fan_paid,post_impressions_organic,post_impressions_viral,post_impressions_nonviral,post_reactions_by_type_total&access_token='+thenewfbtoken+'')
+
+.then(res => res.text())
+// .then(text => res.json(text)) 
+.then(text => {
+  // console.log(text);
+var obj = JSON.parse(text);
+//var obj = JSON.stringify(text);
+var values = obj.data ;
+res.json(obj.data);
+//res.render('table', { data: values});
+
+})
+
+.catch(err => {
+  console.log(err);
+});
+});
+});
+
+router.post('/Pagepostsfb' , (req,res) => {
+  var pageid = req.body.pageid;
+ // console.log(pageid);
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+.then(res => res.json())
+.then((json)=>{
+thenewfbtoken = json.access_token;
+
+//console.log('tokenp'+thenewfbtoken);
+ // console.log('tokenp'+thenewfbtoken)
+var startdate = req.body.startdate;
+  var enddate = req.body.enddate;
+var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/posts?fields=permalink_url,id,created_time,shares,likes.limit(0).summary(true),comments.limit(0).summary(true)&since='+startdate+'&until='+enddate+'&limit=100&access_token='+thenewfbtoken+'')
+
+.then(res => res.text())
+// .then(text => res.json(text)) 
+.then(text => {
+  // console.log(text);
+var obj = JSON.parse(text);
+//var obj = JSON.stringify(text);
+var values = obj.data ;
+res.json(obj.data);
+//res.render('table', { data: values});
+
+})
+
+.catch(err => {
+  console.log(err);
+});
+});
+});
+
+
+router.post('/Pageposts' , (req,res) => {
+  var pageid = req.body.pageid;
+ // console.log(pageid);
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+.then(res => res.json())
+.then((json)=>{
+thenewfbtoken = json.access_token;
+
+//console.log('tokenp'+thenewfbtoken);
+ // console.log('tokenp'+thenewfbtoken)
+var startdate = req.body.startdate;
+  var enddate = req.body.enddate;
+var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_posts_impressions,page_posts_impressions_paid,page_posts_impressions_organic,page_posts_served_impressions_organic_unique,page_posts_impressions_viral,page_posts_impressions_nonviral,page_posts_impressions_frequency_distribution&since='+startdate+'&until='+enddate+'&period=day')
+
+.then(res => res.text())
+// .then(text => res.json(text)) 
+.then(text => {
+  // console.log(text);
+var obj = JSON.parse(text);
+//var obj = JSON.stringify(text);
+var values = obj.data ;
+res.json(obj.data);
+//res.render('table', { data: values});
+
+})
+
+.catch(err => {
+  console.log(err);
+});
+});
+});
+
+router.post('/PageCTA' , (req,res) => {
+  var pageid = req.body.pageid;
+ // console.log(pageid);
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+.then(res => res.json())
+.then((json)=>{
+thenewfbtoken = json.access_token;
+
+//console.log('tokenp'+thenewfbtoken);
+ // console.log('tokenp'+thenewfbtoken)
+var startdate = req.body.startdate;
+  var enddate = req.body.enddate;
+var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_total_actions,page_call_phone_clicks_logged_in_unique,page_get_directions_clicks_logged_in_unique,page_website_clicks_logged_in_unique&since='+startdate+'&until='+enddate+'&period=day')
+
+.then(res => res.text())
+// .then(text => res.json(text)) 
+.then(text => {
+  // console.log(text);
+var obj = JSON.parse(text);
+//var obj = JSON.stringify(text);
+var values = obj.data ;
+res.json(obj.data);
+//res.render('table', { data: values});
+
+})
+
+.catch(err => {
+  console.log(err);
+});
+});
+});
+
+router.post('/PageEngagement' , (req,res) => {
+  var pageid = req.body.pageid;
+ // console.log(pageid);
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+.then(res => res.json())
+.then((json)=>{
+thenewfbtoken = json.access_token;
+
+//console.log('tokenp'+thenewfbtoken);
+ // console.log('tokenp'+thenewfbtoken)
+var startdate = req.body.startdate;
+  var enddate = req.body.enddate;
+var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_engaged_users,page_post_engagements,page_consumptions,page_consumptions_by_consumption_type,page_negative_feedback,page_negative_feedback_by_type,page_positive_feedback_by_type,page_fans_online,page_fans_online_per_day,page_fan_adds_by_paid_non_paid_unique&since='+startdate+'&until='+enddate+'&period=day')
+
+.then(res => res.text())
+// .then(text => res.json(text)) 
+.then(text => {
+  // console.log(text);
+var obj = JSON.parse(text);
+//var obj = JSON.stringify(text);
+var values = obj.data ;
+res.json(obj.data);
+//res.render('table', { data: values});
+
+})
+
+.catch(err => {
+  console.log(err);
+});
+});
+});
+
+router.post('/pageimpressions' , (req,res) => {
+  var pageid = req.body.pageid;
+ // console.log(pageid);
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+.then(res => res.json())
+.then((json)=>{
+thenewfbtoken = json.access_token;
+
+//console.log('tokenp'+thenewfbtoken);
+ // console.log('tokenp'+thenewfbtoken)
+var startdate = req.body.startdate;
+  var enddate = req.body.enddate;
+var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_impressions,page_impressions_paid,page_impressions_organic,page_impressions_viral,page_impressions_nonviral,page_impressions_by_story_type,page_impressions_by_city_unique,page_impressions_by_country_unique,page_impressions_by_locale_unique,page_impressions_by_age_gender_unique,page_impressions_frequency_distribution,page_impressions_viral_frequency_distribution&since='+startdate+'&until='+enddate+'&period=day')
+
+.then(res => res.text())
+// .then(text => res.json(text)) 
+.then(text => {
+  // console.log(text);
+var obj = JSON.parse(text);
+//var obj = JSON.stringify(text);
+var values = obj.data ;
+res.json(obj.data);
+//res.render('table', { data: values});
+
+})
+
+.catch(err => {
+  console.log(err);
+});
+});
+});
+
+router.post('/PageReactions' , (req,res) => {
+  var pageid = req.body.pageid;
+ // console.log(pageid);
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+.then(res => res.json())
+.then((json)=>{
+thenewfbtoken = json.access_token;
+
+//console.log('tokenp'+thenewfbtoken);
+ // console.log('tokenp'+thenewfbtoken)
+var startdate = req.body.startdate;
+  var enddate = req.body.enddate;
+var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_actions_post_reactions_total&since='+startdate+'&until='+enddate+'&period=day')
+
+.then(res => res.text())
+// .then(text => res.json(text)) 
+.then(text => {
+  // console.log(text);
+var obj = JSON.parse(text);
+//var obj = JSON.stringify(text);
+var values = obj.data ;
+res.json(obj.data);
+//res.render('table', { data: values});
+
+})
+
+.catch(err => {
+  console.log(err);
+});
+});
+});
+
+
+router.post('/PageUserDemographics' , (req,res) => {
+  var pageid = req.body.pageid;
+ // console.log(pageid);
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+.then(res => res.json())
+.then((json)=>{
+thenewfbtoken = json.access_token;
+
+//console.log('tokenp'+thenewfbtoken);
+ // console.log('tokenp'+thenewfbtoken)
+var startdate = req.body.startdate;
+  var enddate = req.body.enddate;
+var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_fans,page_fans_locale,page_fans_city,page_fans_country,page_fans_gender_age,page_fan_adds,page_fans_by_like_source,page_fan_removes,page_fans_by_unlike_source_unique&since='+startdate+'&until='+enddate+'&period=day')
+
+.then(res => res.text())
+// .then(text => res.json(text)) 
+.then(text => {
+  // console.log(text);
+var obj = JSON.parse(text);
+//var obj = JSON.stringify(text);
+var values = obj.data ;
+res.json(obj.data);
+//res.render('table', { data: values});
+
+})
+
+.catch(err => {
+  console.log(err);
+});
+});
+});
+
+router.post('/PageVideoViews' , (req,res) => {
+  var pageid = req.body.pageid;
+ // console.log(pageid);
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+.then(res => res.json())
+.then((json)=>{
+thenewfbtoken = json.access_token;
+
+//console.log('tokenp'+thenewfbtoken);
+ // console.log('tokenp'+thenewfbtoken)
+var startdate = req.body.startdate;
+  var enddate = req.body.enddate;
+var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_video_views,page_video_views_paid,page_video_views_organic,page_video_views_autoplayed,page_video_views_click_to_play,page_video_views_unique,page_video_repeat_views,page_video_complete_views_30s,page_video_complete_views_30s_paid,page_video_complete_views_30s_organic,page_video_complete_views_30s_autoplayed,page_video_complete_views_30s_click_to_play,page_video_complete_views_30s_unique,page_video_complete_views_30s_repeat_views,post_video_complete_views_30s_autoplayed,post_video_complete_views_30s_clicked_to_play,post_video_complete_views_30s_organic,post_video_complete_views_30s_paid,post_video_complete_views_30s_unique,page_video_views_10s	,page_video_views_10s_paid,page_video_views_10s_organic,page_video_views_10s_autoplayed,page_video_views_10s_click_to_play,page_video_views_10s_unique,page_video_views_10s_repeat,page_video_view_time&since='+startdate+'&until='+enddate+'&period=day')
+
+.then(res => res.text())
+// .then(text => res.json(text)) 
+.then(text => {
+  // console.log(text);
+var obj = JSON.parse(text);
+//var obj = JSON.stringify(text);
+var values = obj.data ;
+res.json(obj.data);
+//res.render('table', { data: values});
+
+})
+
+.catch(err => {
+  console.log(err);
+});
+});
+});
+
+router.post('/PageViews' , (req,res) => {
+  var pageid = req.body.pageid;
+ // console.log(pageid);
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+.then(res => res.json())
+.then((json)=>{
+thenewfbtoken = json.access_token;
+
+//console.log('tokenp'+thenewfbtoken);
+ // console.log('tokenp'+thenewfbtoken)
+var startdate = req.body.startdate;
+  var enddate = req.body.enddate;
+var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_views_by_referers_logged_in_unique,page_views_by_site_logged_in_unique,page_views_by_internal_referer_logged_in_unique,page_views_by_profile_tab_logged_in_unique,page_views_by_profile_tab_total,page_views_external_referrals,page_views_logged_in_unique,page_views_logged_in_total,page_views_logout,page_views_total&since='+startdate+'&until='+enddate+'&period=day')
+
+.then(res => res.text())
+// .then(text => res.json(text)) 
+.then(text => {
+  // console.log(text);
+var obj = JSON.parse(text);
+//var obj = JSON.stringify(text);
+var values = obj.data ;
+res.json(obj.data);
+//res.render('table', { data: values});
+
+})
+
+.catch(err => {
+  console.log(err);
+});
+});
+});
+
+router.post('/stories' , (req,res) => {
+  var pageid = req.body.pageid;
+ // console.log(pageid);
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+.then(res => res.json())
+.then((json)=>{
+thenewfbtoken = json.access_token;
+
+//console.log('tokenp'+thenewfbtoken);
+ // console.log('tokenp'+thenewfbtoken)
+var startdate = req.body.startdate;
+  var enddate = req.body.enddate;
+var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_content_activity_by_age_gender_unique,page_content_activity_by_city_unique,page_content_activity_by_country_unique,page_content_activity_by_locale_unique&since='+startdate+'&until='+enddate+'&period=day')
+
+.then(res => res.text())
+// .then(text => res.json(text)) 
+.then(text => {
+  // console.log(text);
+var obj = JSON.parse(text);
+//var obj = JSON.stringify(text);
+var values = obj.data ;
+res.json(obj.data);
+//res.render('table', { data: values});
+
+})
+
+.catch(err => {
+  console.log(err);
+});
+});
+});
 
 router.post('/facebook' , (req,res) => {
   var pageid = req.body.pageid;
@@ -294,6 +553,39 @@ res.json(obj.data);
 });
 });
 });
+
+router.get('/postid', function(req, res){
+  var idd =fetch('https://graph.facebook.com/v10.0/100434808634883/posts?&since=2021-06-01&until=2021-06-30&limit=100&access_token='+ tokken)
+  .then(res => res.text())
+  // .then(text => res.json(text)) 
+  .then(text => {
+    // console.log(text);
+  var obj = JSON.parse(text);
+  //var obj = JSON.stringify(text);
+  var values = obj.data ;
+  res.json(obj.data);
+  var i;
+  some_array = [];
+  for(i = 0; i < jsonfile.length; i++) {
+      postidss = jsonfile[i].id;
+   some_array.push(postidss);
+  }
+  
+  console.log(some_array);
+  listlist = [];
+  var j;
+ for (j = 0; j < some_array.length; j++) {
+ var posmec = fetch('https://graph.facebook.com/v10.0/'+some_array[j]+'/?fields=attachments{media},reactions.summary(true)&access_token='+thenewfbtoken+'')
+ .then(res => res.json())
+ .then(json => console.log('le post en question : '  + json.id  +  '   nombre des reactions du post : ' + json.reactions.summary.total_count))
+  } 
+  res.render('classement');
+
+  
+  });
+});
+
+
 router.get('/admins', function(req, res){
   var mynewlist= [] ;
   var gh =fetch('https://graph.facebook.com/me?fields=accounts&access_token='+ tokken)
@@ -307,6 +599,16 @@ router.get('/admins', function(req, res){
 
   res.render('form', { mylist:mynewlist});
 
+ });
+
+});
+//l'id des pages 
+router.get('/pageid', function(req, res){
+  var mynewlist= [] ;
+  var gh =fetch('https://graph.facebook.com/me?fields=accounts&access_token='+ tokken)
+  .then(res => res.json())
+ .then((resultat)=>{
+ res.json(resultat)
  });
 
 });

@@ -203,7 +203,7 @@ res.json(obj.data);
 });
 
 router.post('/postmetrics' , (req,res) => {
-  var postid = req.body.postid;
+  var pageid = req.body.pageid;
  // console.log(pageid);
 var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
 .then(res => res.json())
@@ -214,6 +214,8 @@ thenewfbtoken = json.access_token;
  // console.log('tokenp'+thenewfbtoken)
 var startdate = req.body.startdate;
   var enddate = req.body.enddate;
+  var postid = req.body.postid;
+
 var htt =fetch('https://graph.facebook.com/v10.0/'+postid+'/insights/post_engaged_users,post_negative_feedback,post_engaged_fan,post_clicks,post_impressions,post_impressions_paid,post_impressions_fan,post_impressions_fan_paid,post_impressions_organic,post_impressions_viral,post_impressions_nonviral,post_reactions_by_type_total&access_token='+thenewfbtoken+'')
 
 .then(res => res.text())

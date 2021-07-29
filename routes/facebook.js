@@ -202,7 +202,7 @@ res.json(obj.data);
 });
 });
 
-router.post('/postmetrics' , (req,res) => {
+router.post('/postmoredetails' , (req,res) => {
   var pageid = req.body.pageid;
  // console.log(pageid);
 var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
@@ -214,14 +214,12 @@ thenewfbtoken = json.access_token;
  // console.log('tokenp'+thenewfbtoken)
 var startdate = req.body.startdate;
   var enddate = req.body.enddate;
-  var postid = req.body.postid;
-
-var htt =fetch('https://graph.facebook.com/v10.0/'+postid+'/insights/post_engaged_users,post_negative_feedback,post_engaged_fan,post_clicks,post_impressions,post_impressions_paid,post_impressions_fan,post_impressions_fan_paid,post_impressions_organic,post_impressions_viral,post_impressions_nonviral,post_reactions_by_type_total&access_token='+thenewfbtoken+'')
+var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/posts?fields=insights.metric(post_engaged_users,post_negative_feedback,post_engaged_fan,post_clicks,post_impressions,post_impressions_paid,post_impressions_fan,post_impressions_fan_paid,post_impressions_organic,post_impressions_viral,post_impressions_nonviral,post_reactions_by_type_total),permalink_url&access_token='+thenewfbtoken+'')
 
 .then(res => res.text())
 // .then(text => res.json(text)) 
 .then(text => {
-  // console.log(text);
+   //console.log(text);
 var obj = JSON.parse(text);
 //var obj = JSON.stringify(text);
 var values = obj.data ;
@@ -235,6 +233,7 @@ res.json(obj.data);
 });
 });
 });
+
 
 
 router.post('/Pageposts' , (req,res) => {

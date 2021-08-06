@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 var cors = require('cors')
-
 const path = require('path');
 const dotenv = require('dotenv');
 const bodyParser = require("body-parser");
@@ -34,8 +33,10 @@ mongoose.connect(process.env.DATABASE_LOCAL, {
     useCreateIndex : true
 });
 const facebookRoutes = require('./routes/facebook');
+const instagramRoutes = require('./routes/instagram');
 const adminRoutes = require('./routes/admin');
 app.use(facebookRoutes);
+app.use(instagramRoutes);
 app.use(adminRoutes);
 
 app.listen(process.env.PORT || 5000, function(){

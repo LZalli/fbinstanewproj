@@ -9,7 +9,7 @@ module.exports = {
   facebook_api_secret: "a13091ffa5733740b631057fa6f325b1",
 
 
-  callback_url: "https://31e144bde480.ngrok.io/auth/facebook/callback",
+  callback_url: "https://fbinstaproject.herokuapp.com/auth/facebook/callback",
   use_database: false,
   host: "localhost",
   username: "root",

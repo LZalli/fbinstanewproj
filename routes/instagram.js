@@ -112,7 +112,7 @@ thenewfbtoken = json.access_token;
  // console.log('tokenp'+thenewfbtoken)
 var startdate = req.body.startdate;
   var enddate = req.body.enddate;
-  var instaid = req.body.instaid;
+  var instaid = req.body.pageid;
 var htt =fetch('https://graph.facebook.com/v10.0/'+instaid+'/insights?metric=impressions,profile_views,reach,email_contacts,text_message_clicks,website_clicks&since='+startdate+'&until='+enddate+'&period=day&access_token='+thenewfbtoken+'')
 
 .then(res => res.text())

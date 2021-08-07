@@ -5,9 +5,7 @@ const express         =     require('express')
   , cookieParser      =     require('cookie-parser')
   , bodyParser        =     require('body-parser')
   , config            =     require('../configuration/config');
-  const LocalStorage = require('node-localstorage').LocalStorage;
 
-  localStorage = new LocalStorage('./scratch')
 
 
 
@@ -66,9 +64,12 @@ router.use(bodyParser.json());
 
 
 router.post('/instapageid' , (req,res) => {
+  //console.log('testtest'+process.env['tokken']);
+   instatok = process.env['tokken'];
+  // console.log('tok2'+ instatok);
   var pageid = req.body.pageid;
  // console.log(pageid);
-var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + instatok)
 .then(res => res.json())
 .then((json)=>{
 thenewfbtoken = json.access_token;
@@ -95,12 +96,14 @@ res.json(obj);
 .catch(err => {
   console.log(err);
 });
-});
+}); 
 });
 
 router.post('/instametric' , (req,res) => {
  // console.log(pageid);
-var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+ instatok = process.env['tokken'];
+
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + instatok)
 .then(res => res.json())
 .then((json)=>{
 thenewfbtoken = json.access_token;
@@ -132,7 +135,9 @@ res.json(obj);
 
 router.post('/instaaudience' , (req,res) => {
  // console.log(pageid);
-var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+ instatok = process.env['tokken'];
+
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + instatok)
 .then(res => res.json())
 .then((json)=>{
 thenewfbtoken = json.access_token;
@@ -163,7 +168,9 @@ res.json(obj);
 
 router.post('/instaposts' , (req,res) => {
  // console.log(pageid);
-var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+ instatok = process.env['tokken'];
+
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + instatok)
 .then(res => res.json())
 .then((json)=>{
 thenewfbtoken = json.access_token;
@@ -196,7 +203,8 @@ res.json(obj);
 
 router.post('/instapostdetails' , (req,res) => {
  // console.log(pageid);
-var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+ instatok = process.env['tokken'];
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + instatok)
 .then(res => res.json())
 .then((json)=>{
 thenewfbtoken = json.access_token;
@@ -226,7 +234,9 @@ res.json(obj);
 
 router.post('/instastories' , (req,res) => {
  // console.log(pageid);
-var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+ instatok = process.env['tokken'];
+
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + instatok)
 .then(res => res.json())
 .then((json)=>{
 thenewfbtoken = json.access_token;
@@ -257,7 +267,9 @@ res.json(obj);
 //à voir 
 router.post('/storydetails' , (req,res) => {
  // console.log(pageid);
-var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + tokken)
+ instatok = process.env['tokken'];
+
+var htt =fetch('https://graph.facebook.com/'+pageid+'?fields=access_token&access_token=' + instatok)
 .then(res => res.json())
 .then((json)=>{
 thenewfbtoken = json.access_token;

@@ -6,9 +6,7 @@ const express         =     require('express')
   , bodyParser        =     require('body-parser')
   , config            =     require('../configuration/config')
   , mysql             =     require('mysql');
-  const LocalStorage = require('node-localstorage').LocalStorage;
   const dotenv = require('dotenv');
-  localStorage = new LocalStorage('./scratch')
 
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data';
@@ -113,7 +111,7 @@ passport.use(new FacebookStrategy({
   function accestoken(accessToken, refreshToken, profile, done) {
     //console.log('user token : ' + accessToken);
      tokken = accessToken;
-     process.env['tokken'] = tokken;
+     process.env['tokken']=tokken;
     process.nextTick(function  () {
       //Check whether the User exists or not using profile.id
       if(config.use_database) {
@@ -274,7 +272,7 @@ res.json(obj.data);
 
 router.get('/admins', function(req, res){
   var mynewlist= [] ;
-console.log('the token', tokken);
+//console.log('the token', tokken);
   var gh =fetch('https://graph.facebook.com/me?fields=accounts&access_token='+ tokken)
   .then(res => res.json())
  .then((json)=>{

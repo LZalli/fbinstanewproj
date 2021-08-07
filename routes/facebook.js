@@ -272,10 +272,11 @@ res.json(obj.data);
 
 router.get('/admins', function(req, res){
   var mynewlist= [] ;
-//console.log('the token', tokken);
+console.log('the token', tokken);
   var gh =fetch('https://graph.facebook.com/me?fields=accounts&access_token='+ tokken)
   .then(res => res.json())
  .then((json)=>{
+   console.log(json.accounts);
   for (i = 0; i < json.accounts.data.length; i++) {
   pagename = json.accounts.data[i].name;
   pageid = json.accounts.data[i].id;

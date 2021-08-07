@@ -78,7 +78,7 @@ console.log('tokenp'+thenewfbtoken);
  // console.log('tokenp'+thenewfbtoken)
 var startdate = req.body.startdate;
   var enddate = req.body.enddate;
-var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'?fields=instagram_business_account&access_token='+thenewfbtoken+'')
+var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'?fields=instagram_business_account,name&access_token='+thenewfbtoken+'')
 
 .then(res => res.text())
 // .then(text => res.json(text)) 

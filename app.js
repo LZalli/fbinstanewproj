@@ -35,9 +35,17 @@ mongoose.connect(process.env.DATABASE_LOCAL, {
 const facebookRoutes = require('./routes/facebook');
 const instagramRoutes = require('./routes/instagram');
 const adminRoutes = require('./routes/admin');
+const facebookapiRoutes = require('./routes/facebookapi');
+const instagramapiRoutes = require('./routes/instagramapi');
+
+
 app.use(facebookRoutes);
 app.use(instagramRoutes);
 app.use(adminRoutes);
+app.use(facebookapiRoutes);
+app.use(instagramapiRoutes);
+
+
 
 app.listen(process.env.PORT || 5000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);

@@ -1260,7 +1260,7 @@ router.get('/repeatviews', function(req, res){
 //end
 
 //récuperer les  page_video_complete_views_30s
-router.get('/ompleteviews30s', function(req, res){
+router.get('/completeviews30s', function(req, res){
    
   
 
@@ -1287,7 +1287,7 @@ router.get('/ompleteviews30s', function(req, res){
 //end
 
 //récuperer les videos 30s paid
-router.get('/30spaid', function(req, res){
+router.get('/paid30s', function(req, res){
    
   
 
@@ -1315,7 +1315,7 @@ router.get('/30spaid', function(req, res){
 
 
 //récuperer les  30s organic 
-router.get('/30sorganic', function(req, res){
+router.get('/organic30s', function(req, res){
    
   
 
@@ -1372,7 +1372,7 @@ router.get('/videoviews10s', function(req, res){
 
 
 //récuperer les  10s paid 
-router.get('/10spaid', function(req, res){
+router.get('/paid10s', function(req, res){
    
   
 
@@ -1401,7 +1401,7 @@ router.get('/10spaid', function(req, res){
 
 
 //récuperer les  10s organic 
-router.get('/10sorganic', function(req, res){
+router.get('/organic10s', function(req, res){
    
   
 

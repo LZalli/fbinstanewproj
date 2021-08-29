@@ -622,90 +622,90 @@ router.get('/pageimnonviral', function(req, res){
 //end
 
 
-//récuperer les  page impressions story type
-router.get('/pageimptype', function(req, res){
+// //récuperer les  page impressions story type
+// router.get('/pageimptype', function(req, res){
    
   
 
   
-  MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
-      // Client returned
-     var db = client.db('mytestingdb');
-     db.collection('page_impressions_by_story_type').find({}).toArray(function(err, pageimptype) {
-        // Print the documents returned
-        res.json(pageimptype);
+//   MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+//       // Client returned
+//      var db = client.db('mytestingdb');
+//      db.collection('page_impressions_by_story_type').find({}).toArray(function(err, pageimptype) {
+//         // Print the documents returned
+//         res.json(pageimptype);
   
-      /**  docs.forEach(function(doc) {
-          console.log(doc.name);
-        }); **/
-        // Close the DB
-        client.close();
+//       /**  docs.forEach(function(doc) {
+//           console.log(doc.name);
+//         }); **/
+//         // Close the DB
+//         client.close();
   
-        });
+//         });
 
   
-    }) 
+//     }) 
   
-   });
-//end
+//    });
+// //end
 
 
 
-//récuperer les  page_impressions_frequency_distribution
-router.get('/pageimpfreq', function(req, res){
+// //récuperer les  page_impressions_frequency_distribution
+// router.get('/pageimpfreq', function(req, res){
    
   
 
   
-  MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
-      // Client returned
-     var db = client.db('mytestingdb');
-     db.collection('page_impressions_frequency_distribution').find({}).toArray(function(err, pageimpfreq) {
-        // Print the documents returned
-        res.json(pageimpfreq);
+//   MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+//       // Client returned
+//      var db = client.db('mytestingdb');
+//      db.collection('page_impressions_frequency_distribution').find({}).toArray(function(err, pageimpfreq) {
+//         // Print the documents returned
+//         res.json(pageimpfreq);
   
-      /**  docs.forEach(function(doc) {
-          console.log(doc.name);
-        }); **/
-        // Close the DB
-        client.close();
+//       /**  docs.forEach(function(doc) {
+//           console.log(doc.name);
+//         }); **/
+//         // Close the DB
+//         client.close();
   
-        });
+//         });
 
   
-    }) 
+//     }) 
   
-   });
-//end
+//    });
+// //end
 
 
 
-//récuperer les  page_impressions_Viral frequency_distribution
-router.get('/pageimpvirfreq', function(req, res){
+// //récuperer les  page_impressions_Viral frequency_distribution
+// router.get('/pageimpvirfreq', function(req, res){
    
   
 
   
-  MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
-      // Client returned
-     var db = client.db('mytestingdb');
-     db.collection('page_impressions_viral_frequency_distribution').find({}).toArray(function(err, pageimpvirfreq) {
-        // Print the documents returned
-        res.json(pageimpvirfreq);
+//   MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+//       // Client returned
+//      var db = client.db('mytestingdb');
+//      db.collection('page_impressions_viral_frequency_distribution').find({}).toArray(function(err, pageimpvirfreq) {
+//         // Print the documents returned
+//         res.json(pageimpvirfreq);
   
-      /**  docs.forEach(function(doc) {
-          console.log(doc.name);
-        }); **/
-        // Close the DB
-        client.close();
+//       /**  docs.forEach(function(doc) {
+//           console.log(doc.name);
+//         }); **/
+//         // Close the DB
+//         client.close();
   
-        });
+//         });
 
   
-    }) 
+//     }) 
   
-   });
-//end
+//    });
+// //end
 
 
 
@@ -903,32 +903,32 @@ router.get('/pageviewsproftab', function(req, res){
    });
 //end
 
-//récuperer les  page_views_external_referrals
-router.get('/pageviewsexternal', function(req, res){
+// //récuperer les  page_views_external_referrals
+// router.get('/pageviewsexternal', function(req, res){
    
   
 
   
-  MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
-      // Client returned
-     var db = client.db('mytestingdb');
-     db.collection('page_views_external_referrals').find({}).toArray(function(err, pvextref) {
-        // Print the documents returned
-        res.json(pvextref);
+//   MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+//       // Client returned
+//      var db = client.db('mytestingdb');
+//      db.collection('page_views_external_referrals').find({}).toArray(function(err, pvextref) {
+//         // Print the documents returned
+//         res.json(pvextref);
   
-      /**  docs.forEach(function(doc) {
-          console.log(doc.name);
-        }); **/
-        // Close the DB
-        client.close();
+//       /**  docs.forEach(function(doc) {
+//           console.log(doc.name);
+//         }); **/
+//         // Close the DB
+//         client.close();
   
-        });
+//         });
 
   
-    }) 
+//     }) 
   
-   });
-//end
+//    });
+// //end
 
 
 
@@ -1042,32 +1042,32 @@ router.get('/negativefdb', function(req, res){
 //end
 
 
-//récuperer les  page_negative_feedback_by_type
-router.get('/negativefdbtype', function(req, res){
+// //récuperer les  page_negative_feedback_by_type
+// router.get('/negativefdbtype', function(req, res){
    
   
 
   
-  MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
-      // Client returned
-     var db = client.db('mytestingdb');
-     db.collection('page_negative_feedback_by_type').find({}).toArray(function(err, negativtype) {
-        // Print the documents returned
-        res.json(negativtype);
+//   MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+//       // Client returned
+//      var db = client.db('mytestingdb');
+//      db.collection('page_negative_feedback_by_type').find({}).toArray(function(err, negativtype) {
+//         // Print the documents returned
+//         res.json(negativtype);
   
-      /**  docs.forEach(function(doc) {
-          console.log(doc.name);
-        }); **/
-        // Close the DB
-        client.close();
+//       /**  docs.forEach(function(doc) {
+//           console.log(doc.name);
+//         }); **/
+//         // Close the DB
+//         client.close();
   
-        });
+//         });
 
   
-    }) 
+//     }) 
   
-   });
-//end
+//    });
+// //end
 
 //récuperer les  consumptions
 router.get('/consumptions', function(req, res){

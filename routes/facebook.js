@@ -612,21 +612,46 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
 //end page_fans_country
 
 //page_fans_gender_age
+agearray =[];
 var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_fans_gender_age&since='+startdate+'&until='+enddate+'&period=day')
 
 .then(res => res.text())
 // .then(text => res.json(text)) 
 .then(text => {
-  // console.log(text);
+  //console.log(text);
 var obj = JSON.parse(text);
 //var obj = JSON.stringify(text);
-var values = obj.data ;
+var newar = obj.data ;
+console.log(newar)
+//console.log(info.data.values);
+const obj2 = {};
+
+ for (var key in newar){
+   var value = newar[key];
+   console.log("<br> - " + key + ": " + value);
+ 
+   data = value['values'];
+var item = data[0].value ; 
+   // console.log(value['values'].value);
+   // console.log(data['value']);
+  console.log(data[0].value);
+
+   for (var key in item){
+     var infovalue = item[key];
+     console.log("<br> - " + key + ": " + infovalue);
+     obj2[key.replace(/[|&;$%@."<>(),]/g, "")] = item[key];
+
+    }
+  }
+  //console.log(obj2)
+  agearray.push(obj2);
+
 MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
     // Client returned
    var db = client.db('mytestingdb');
-  // db.collection("page_fans_gender_age").drop();
-   console.log(values)
-    db.collection("page_fans_gender_age").insertMany(values, function(err, res) {  
+   db.collection("page_fans_gender_age").drop();
+  //  console.log(values)
+    db.collection("page_fans_gender_age").insertMany(agearray, function(err, res) {  
       console.log("connect"+ db)
 
     //  if (err) throw err;  
@@ -634,7 +659,7 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
       });  
   }) 
 
-  res.render('table', { data: values});
+  res.json(obj2);
 
 
 })
@@ -894,106 +919,106 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
 });
 //end page_impressions_nonviral
 
-//page_impressions_by_story_type
-var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_impressions_by_story_type&since='+startdate+'&until='+enddate+'&period=day')
+// //page_impressions_by_story_type
+// var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_impressions_by_story_type&since='+startdate+'&until='+enddate+'&period=day')
 
-.then(res => res.text())
-// .then(text => res.json(text)) 
-.then(text => {
-  // console.log(text);
-var obj = JSON.parse(text);
-//var obj = JSON.stringify(text);
-var values = obj.data ;
-MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
-    // Client returned
-   var db = client.db('mytestingdb');
-  // db.collection("page_impressions_by_story_type").drop();
-   console.log(values)
-    db.collection("page_impressions_by_story_type").insertMany(values, function(err, res) {  
-      console.log("connect"+ db)
+// .then(res => res.text())
+// // .then(text => res.json(text)) 
+// .then(text => {
+//   // console.log(text);
+// var obj = JSON.parse(text);
+// //var obj = JSON.stringify(text);
+// var values = obj.data ;
+// MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+//     // Client returned
+//    var db = client.db('mytestingdb');
+//   // db.collection("page_impressions_by_story_type").drop();
+//    console.log(values)
+//     db.collection("page_impressions_by_story_type").insertMany(values, function(err, res) {  
+//       console.log("connect"+ db)
 
-    //  if (err) throw err;  
-      console.log("1 record inserted");  
-      });  
-  }) 
+//     //  if (err) throw err;  
+//       console.log("1 record inserted");  
+//       });  
+//   }) 
 
-  res.render('table', { data: values});
-
-
-})
-
-.catch(err => {
-  console.log(err);
-});
-//end page_impressions_by_story_type
+//   res.render('table', { data: values});
 
 
-//page_impressions_frequency_distribution
-var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_impressions_frequency_distribution&since='+startdate+'&until='+enddate+'&period=day')
+// })
 
-.then(res => res.text())
-// .then(text => res.json(text)) 
-.then(text => {
-  // console.log(text);
-var obj = JSON.parse(text);
-//var obj = JSON.stringify(text);
-var values = obj.data ;
-MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
-    // Client returned
-   var db = client.db('mytestingdb');
-  // db.collection("page_impressions_frequency_distribution").drop();
-   console.log(values)
-    db.collection("page_impressions_frequency_distribution").insertMany(values, function(err, res) {  
-      console.log("connect"+ db)
-
-    //  if (err) throw err;  
-      console.log("1 record inserted");  
-      });  
-  }) 
-
-  res.render('table', { data: values});
+// .catch(err => {
+//   console.log(err);
+// });
+// //end page_impressions_by_story_type
 
 
-})
+// //page_impressions_frequency_distribution
+// var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_impressions_frequency_distribution&since='+startdate+'&until='+enddate+'&period=day')
 
-.catch(err => {
-  console.log(err);
-});
-//end page_impressions_frequency_distribution
+// .then(res => res.text())
+// // .then(text => res.json(text)) 
+// .then(text => {
+//   // console.log(text);
+// var obj = JSON.parse(text);
+// //var obj = JSON.stringify(text);
+// var values = obj.data ;
+// MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+//     // Client returned
+//    var db = client.db('mytestingdb');
+//   // db.collection("page_impressions_frequency_distribution").drop();
+//    console.log(values)
+//     db.collection("page_impressions_frequency_distribution").insertMany(values, function(err, res) {  
+//       console.log("connect"+ db)
 
+//     //  if (err) throw err;  
+//       console.log("1 record inserted");  
+//       });  
+//   }) 
 
-//page_impressions_viral_frequency_distribution
-var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_impressions_viral_frequency_distribution&since='+startdate+'&until='+enddate+'&period=day')
-
-.then(res => res.text())
-// .then(text => res.json(text)) 
-.then(text => {
-  // console.log(text);
-var obj = JSON.parse(text);
-//var obj = JSON.stringify(text);
-var values = obj.data ;
-MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
-    // Client returned
-   var db = client.db('mytestingdb');
-  // db.collection("page_impressions_viral_frequency_distribution").drop();
-   console.log(values)
-    db.collection("page_impressions_viral_frequency_distribution").insertMany(values, function(err, res) {  
-      console.log("connect"+ db)
-
-    //  if (err) throw err;  
-      console.log("1 record inserted");  
-      });  
-  }) 
-
-  res.render('table', { data: values});
+//   res.render('table', { data: values});
 
 
-})
+// })
 
-.catch(err => {
-  console.log(err);
-});
-//end page_impressions_viral_frequency_distribution
+// .catch(err => {
+//   console.log(err);
+// });
+// //end page_impressions_frequency_distribution
+
+
+// //page_impressions_viral_frequency_distribution
+// var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_impressions_viral_frequency_distribution&since='+startdate+'&until='+enddate+'&period=day')
+
+// .then(res => res.text())
+// // .then(text => res.json(text)) 
+// .then(text => {
+//   // console.log(text);
+// var obj = JSON.parse(text);
+// //var obj = JSON.stringify(text);
+// var values = obj.data ;
+// MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+//     // Client returned
+//    var db = client.db('mytestingdb');
+//   // db.collection("page_impressions_viral_frequency_distribution").drop();
+//    console.log(values)
+//     db.collection("page_impressions_viral_frequency_distribution").insertMany(values, function(err, res) {  
+//       console.log("connect"+ db)
+
+//     //  if (err) throw err;  
+//       console.log("1 record inserted");  
+//       });  
+//   }) 
+
+//   res.render('table', { data: values});
+
+
+// })
+
+// .catch(err => {
+//   console.log(err);
+// });
+// //end page_impressions_viral_frequency_distribution
 
 
 });
@@ -1265,38 +1290,38 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
 
 //end page_views_by_profile_tab_total
 
-//page_views_external_referrals 
-var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_views_external_referrals&since='+startdate+'&until='+enddate+'&period=day')
+// //page_views_external_referrals 
+// var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_views_external_referrals&since='+startdate+'&until='+enddate+'&period=day')
 
-.then(res => res.text())
-// .then(text => res.json(text)) 
-.then(text => {
-  // console.log(text);
-var obj = JSON.parse(text);
-//var obj = JSON.stringify(text);
-var values = obj.data ;
-MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
-    // Client returned
-   var db = client.db('mytestingdb');
- //  db.collection("page_views_external_referrals").drop();
-   console.log(values)
-    db.collection("page_views_external_referrals").insertMany(values, function(err, res) {  
-      console.log("connect"+ db)
+// .then(res => res.text())
+// // .then(text => res.json(text)) 
+// .then(text => {
+//   // console.log(text);
+// var obj = JSON.parse(text);
+// //var obj = JSON.stringify(text);
+// var values = obj.data ;
+// MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+//     // Client returned
+//    var db = client.db('mytestingdb');
+//  //  db.collection("page_views_external_referrals").drop();
+//    console.log(values)
+//     db.collection("page_views_external_referrals").insertMany(values, function(err, res) {  
+//       console.log("connect"+ db)
 
-    //  if (err) throw err;  
-      console.log("1 record inserted");  
-      });  
-  }) 
-
-
+//     //  if (err) throw err;  
+//       console.log("1 record inserted");  
+//       });  
+//   }) 
 
 
-})
 
-.catch(err => {
-  console.log(err);
-});
-//end page_views_external_referrals
+
+// })
+
+// .catch(err => {
+//   console.log(err);
+// });
+// //end page_views_external_referrals
 
 //page_views_logged_in_total
 var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_views_logged_in_total&since='+startdate+'&until='+enddate+'&period=day')
@@ -1448,38 +1473,38 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
 });
 //end page_negative_feedback
 
-//page_negative_feedback_by_type
-var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_negative_feedback_by_type&since='+startdate+'&until='+enddate+'&period=day')
+// //page_negative_feedback_by_type
+// var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_negative_feedback_by_type&since='+startdate+'&until='+enddate+'&period=day')
 
-.then(res => res.text())
-// .then(text => res.json(text)) 
-.then(text => {
-  // console.log(text);
-var obj = JSON.parse(text);
-//var obj = JSON.stringify(text);
-var values = obj.data ;
-MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
-    // Client returned
-   var db = client.db('mytestingdb');
-  // db.collection("page_negative_feedback_by_type").drop();
-   console.log(values)
-    db.collection("page_negative_feedback_by_type").insertMany(values, function(err, res) {  
-      console.log("connect"+ db)
+// .then(res => res.text())
+// // .then(text => res.json(text)) 
+// .then(text => {
+//   // console.log(text);
+// var obj = JSON.parse(text);
+// //var obj = JSON.stringify(text);
+// var values = obj.data ;
+// MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+//     // Client returned
+//    var db = client.db('mytestingdb');
+//   // db.collection("page_negative_feedback_by_type").drop();
+//    console.log(values)
+//     db.collection("page_negative_feedback_by_type").insertMany(values, function(err, res) {  
+//       console.log("connect"+ db)
 
-    //  if (err) throw err;  
-      console.log("1 record inserted");  
-      });  
-  }) 
-
-
+//     //  if (err) throw err;  
+//       console.log("1 record inserted");  
+//       });  
+//   }) 
 
 
-})
 
-.catch(err => {
-  console.log(err);
-});
-//end page_negative_feedback_by_type
+
+// })
+
+// .catch(err => {
+//   console.log(err);
+// });
+// //end page_negative_feedback_by_type
 
 //page_consumptions
 var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_token='+thenewfbtoken+'&pretty=0&metric=page_consumptions&since='+startdate+'&until='+enddate+'&period=day')

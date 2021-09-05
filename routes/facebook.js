@@ -288,7 +288,7 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
 
 
 
-//res.render('table', { data: values});
+res.render('table', { data: values});
 
 })
 
@@ -2016,35 +2016,35 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
 });
 
 //l'id des pages 
-// router.get('/pageid', function(req, res){
-//  // json=[{"nom":"laith", "prenom":"harzam"}];
-//   var mynewlist= [] ;
-//   var gh =fetch('https://graph.facebook.com/me?fields=accounts&access_token='+ tokken)
-//   .then(res => res.text())
-//   // .then(text => res.json(text)) 
-//   .then(text => {
-//     // console.log(text);
-//   var obj = JSON.parse(text);
-//   //var obj = JSON.stringify(text);
-//   var values = obj.data ;
-//   console.log(values)
-//   res.json(obj.data);
+router.get('/pageid', function(req, res){
+ // json=[{"nom":"laith", "prenom":"harzam"}];
+  var mynewlist= [] ;
+  var gh =fetch('https://graph.facebook.com/me?fields=accounts&access_token='+ tokken)
+  .then(res => res.text())
+  // .then(text => res.json(text)) 
+  .then(text => {
+    // console.log(text);
+  var obj = JSON.parse(text);
+  //var obj = JSON.stringify(text);
+  var values = obj.data ;
+  console.log(values)
+  res.json(obj.data);
   
-//   //res.render('table',
-// /** MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
-//     // Client returned
-//    var db = client.db('mytestingdb');
-//     db.collection("pagefacebook").insertMany(values, function(err, res) {  
-//       console.log("connect"+ db)
+  //res.render('table',
+ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+    // Client returned
+   var db = client.db('mytestingdb');
+    db.collection("pagefacebook").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
 
-//       if (err) throw err;  
-//       console.log("1 record inserted");  
-//       });   
-//   }) **/
+      if (err) throw err;  
+      console.log("1 record inserted");  
+      });   
+  }) 
   
-//  });
+ });
 
-// });
+});
 router.get('/user', function(req,res,next){
 /**MongoClient.connect(url, function(err, db) {  
   if (err) throw err;  

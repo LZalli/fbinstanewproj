@@ -193,11 +193,11 @@ var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/posts?fields=permali
 var obj = JSON.parse(text);
 //var obj = JSON.stringify(text);
 var values = obj.data ;
-
+console.log(obj)
 MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
     // Client returned
    var db = client.db('mytestingdb');
-   db.collection("postfacebook").drop();
+   //db.collection("postfacebook").drop();
    console.log(values)
     db.collection("postfacebook").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
@@ -229,7 +229,7 @@ var values = obj.data ;
 MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
     // Client returned
    var db = client.db('mytestingdb');
-   db.collection("postdetails").drop();
+   //db.collection("postdetails").drop();
    console.log(values)
     db.collection("postdetails").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
@@ -278,12 +278,24 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("pageImpression").drop();
    console.log(values)
-    db.collection("pageImpression").insertMany(values, function(err, res) {  
-      console.log("connect"+ db)
+if (db.collection("pageImpression").indexExists()) {
+  db.collection("pageImpression").drop();
+  db.collection("pageImpression").insertMany(values, function(err, res) {  
+    console.log("connect"+ db)
 
-    //  if (err) throw err;  
-      console.log("1 record inserted");  
-      });  
+  //  if (err) throw err;  
+    console.log("1 record inserted");  
+    });  
+
+}
+else {
+  db.collection("pageImpression").insertMany(values, function(err, res) {  
+    console.log("connect"+ db)
+
+  //  if (err) throw err;  
+    console.log("1 record inserted");  
+    });}
+
   }) 
 
 

@@ -217,7 +217,7 @@ res.json(obj.data);
 });
 
 
-var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/posts?fields=insights.metric(post_engaged_users,post_negative_feedback,post_engaged_fan,post_clicks,post_impressions,post_impressions_paid,post_impressions_fan,post_impressions_fan_paid,post_impressions_organic,post_impressions_viral,post_impressions_nonviral,post_reactions_by_type_total),permalink_url&since='+startdate+'&until='+enddate+'&access_token='+thenewfbtoken+'')
+var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/posts?fields=insights.metric(post_engaged_users,post_negative_feedback,post_engaged_fan,post_clicks,post_impressions,post_impressions_paid,post_impressions_fan,post_impressions_fan_paid,post_impressions_organic,post_impressions_viral,post_impressions_nonviral),permalink_url&since='+startdate+'&until='+enddate+'&access_token='+thenewfbtoken+'')
 
 .then(res => res.text())
 // .then(text => res.json(text)) 

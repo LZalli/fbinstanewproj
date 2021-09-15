@@ -193,18 +193,29 @@ var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/posts?fields=permali
 var obj = JSON.parse(text);
 //var obj = JSON.stringify(text);
 var values = obj.data ;
-console.log(obj)
+//console.log(obj)
 MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
     // Client returned
    var db = client.db('mytestingdb');
    //db.collection("postfacebook").drop();
-   console.log(values)
+   //console.log(values)
+   if (db.collection("postfacebook").indexExists()) {
+    db.collection("postfacebook").drop();
     db.collection("postfacebook").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("postfacebook").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}
   }) 
 res.json(obj.data);
 
@@ -231,15 +242,26 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
    //db.collection("postdetails").drop();
    console.log(values)
+   if (db.collection("postdetails").indexExists()) {
+    db.collection("postdetails").drop();
     db.collection("postdetails").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("postdetails").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}
   }) 
 res.json(obj.data);
-//res.render('table', { data: values});
+      res.redirect('/viewadmin');
 
 })
 
@@ -300,7 +322,6 @@ else {
 
 
 
-res.render('table', { data: values});
 
 })
 
@@ -325,12 +346,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
  //  db.collection("pageViewsTotal").drop();
    console.log(values)
+   if (db.collection("pageViewsTotal").indexExists()) {
+    db.collection("pageViewsTotal").drop();
     db.collection("pageViewsTotal").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("pageViewsTotal").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}
   }) 
 
 
@@ -358,12 +390,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_actions_post_reactions_total").drop();
    console.log(values)
+   if (db.collection("page_actions_post_reactions_total").indexExists()) {
+    db.collection("page_actions_post_reactions_total").drop();
     db.collection("page_actions_post_reactions_total").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_actions_post_reactions_total").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
 
@@ -391,15 +434,26 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_total_actions").drop();
    console.log(values)
+   if (db.collection("page_total_actions").indexExists()) {
+    db.collection("page_total_actions").drop();
     db.collection("page_total_actions").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_total_actions").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
+ 
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -424,15 +478,25 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_engaged_users").drop();
    console.log(values)
+   if (db.collection("page_engaged_users").indexExists()) {
+    db.collection("page_engaged_users").drop();
     db.collection("page_engaged_users").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_engaged_users").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -457,15 +521,26 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_post_engagements").drop();
    console.log(values)
+   if (db.collection("page_post_engagements").indexExists()) {
+    db.collection("page_post_engagements").drop();
     db.collection("page_post_engagements").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_post_engagements").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
-  res.render('table', { data: values});
+  res.redirect('/viewadmin');
 
 
 })
@@ -476,7 +551,34 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
 //end page_post_engagements
 });
 });
+//admin page view 
+router.get('/viewadmin', function(req, res){
+  var mynewlist= [] ;
+//console.log('the token', tokken);
+  var gh =fetch('https://graph.facebook.com/me?fields=accounts&access_token='+ tokken)
+  .then(res => res.json())
+ .then((json)=>{
+   //console.log(json.accounts);
+  for (i = 0; i < json.accounts.data.length; i++) {
+  pagename = json.accounts.data[i].name;
+  pageid = json.accounts.data[i].id;
+   mynewlist.push({ pagename , pageid })
 
+}
+
+
+  res.render('admin', { mylist:mynewlist});
+
+ });
+
+});
+
+  router.get('/viewFB' , (req,res) => {
+    res.render('facebook');
+    })
+  //end-of admin 
+
+  
 router.post('/pagefans' , (req,res) => {
   var pageid = req.body.pageid;
  // console.log(pageid);
@@ -504,12 +606,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_fans").drop();
    console.log(values)
+   if (db.collection("page_fans").indexExists()) {
+    db.collection("page_fans").drop();
     db.collection("page_fans").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_fans").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
 
@@ -539,12 +652,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
  //  db.collection("page_fans_locale").drop();
    console.log(values)
+   if (db.collection("page_fans_locale").indexExists()) {
+    db.collection("page_fans_locale").drop();
     db.collection("page_fans_locale").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_fans_locale").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}  
   }) 
 
 
@@ -572,12 +696,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_fans_city").drop();
    console.log(values)
+   if (db.collection("page_fans_city").indexExists()) {
+    db.collection("page_fans_city").drop();
     db.collection("page_fans_city").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_fans_city").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}  
   }) 
 
 
@@ -605,15 +740,27 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_fans_country").drop();
    console.log(values)
+   if (db.collection("page_fans_country").indexExists()) {
+    db.collection("page_fans_country").drop();
     db.collection("page_fans_country").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_fans_country").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}   
   }) 
 
-  res.render('table', { data: values});
+ // res.render('table', { data: values});
+ 
 
 
 })
@@ -634,7 +781,7 @@ var htt =fetch('https://graph.facebook.com/v10.0/'+pageid+'/insights?access_toke
 var obj = JSON.parse(text);
 //var obj = JSON.stringify(text);
 var newar = obj.data ;
-console.log(newar)
+//console.log(newar)
 //console.log(info.data.values);
 const obj2 = {};
 
@@ -663,12 +810,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
    db.collection("page_fans_gender_age").drop();
   //  console.log(values)
+  if (db.collection("page_fans_gender_age").indexExists()) {
+    db.collection("page_fans_gender_age").drop();
     db.collection("page_fans_gender_age").insertMany(agearray, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_fans_gender_age").insertMany(agearray, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
   res.json(obj2);
@@ -697,15 +855,25 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_fan_adds").drop();
    console.log(values)
+   if (db.collection("page_fan_adds").indexExists()) {
+    db.collection("page_fan_adds").drop();
     db.collection("page_fan_adds").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_fan_adds").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}   
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -731,15 +899,25 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_fans_by_like_source").drop();
    console.log(values)
+   if (db.collection("page_fans_by_like_source").indexExists()) {
+    db.collection("page_fans_by_like_source").drop();
     db.collection("page_fans_by_like_source").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_fans_by_like_source").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -764,15 +942,26 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_fan_removes").drop();
    console.log(values)
+   if (db.collection("page_fan_removes").indexExists()) {
+    db.collection("page_fan_removes").drop();
     db.collection("page_fan_removes").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_fan_removes").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
-  res.render('table', { data: values});
+  res.redirect('/viewadmin');
 
 
 })
@@ -812,12 +1001,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_impressions_paid").drop();
    console.log(values)
+   if (db.collection("page_impressions_paid").indexExists()) {
+    db.collection("page_impressions_paid").drop();
     db.collection("page_impressions_paid").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_impressions_paid").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
 
@@ -847,12 +1047,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
  //  db.collection("page_impressions_organic").drop();
    console.log(values)
+   if (db.collection("page_impressions_organic").indexExists()) {
+    db.collection("page_impressions_organic").drop();
     db.collection("page_impressions_organic").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_impressions_organic").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}  
   }) 
 
 
@@ -880,12 +1091,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_impressions_viral").drop();
    console.log(values)
+   if (db.collection("page_impressions_viral").indexExists()) {
+    db.collection("page_impressions_viral").drop();
     db.collection("page_impressions_viral").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_impressions_viral").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}   
   }) 
 
 
@@ -913,15 +1135,26 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_impressions_nonviral").drop();
    console.log(values)
+   if (db.collection("page_impressions_nonviral").indexExists()) {
+    db.collection("page_impressions_nonviral").drop();
     db.collection("page_impressions_nonviral").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_impressions_nonviral").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
-  res.render('table', { data: values});
+  res.redirect('/viewadmin');
 
 
 })
@@ -1063,12 +1296,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_actions_post_reactions_like_total").drop();
    console.log(values)
+   if (db.collection("page_actions_post_reactions_like_total").indexExists()) {
+    db.collection("page_actions_post_reactions_like_total").drop();
     db.collection("page_actions_post_reactions_like_total").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_actions_post_reactions_like_total").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
 
@@ -1098,12 +1342,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
  //  db.collection("page_actions_post_reactions_love_total").drop();
    console.log(values)
+   if (db.collection("page_actions_post_reactions_love_total").indexExists()) {
+    db.collection("page_actions_post_reactions_love_total").drop();
     db.collection("page_actions_post_reactions_love_total").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_actions_post_reactions_love_total").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
 
@@ -1131,12 +1386,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_actions_post_reactions_wow_total").drop();
    console.log(values)
+   if (db.collection("page_actions_post_reactions_wow_total").indexExists()) {
+    db.collection("page_actions_post_reactions_wow_total").drop();
     db.collection("page_actions_post_reactions_wow_total").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_actions_post_reactions_wow_total").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}  
   }) 
 
 
@@ -1164,15 +1430,25 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_actions_post_reactions_haha_total").drop();
    console.log(values)
+   if (db.collection("page_actions_post_reactions_haha_total").indexExists()) {
+    db.collection("page_actions_post_reactions_haha_total").drop();
     db.collection("page_actions_post_reactions_haha_total").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_actions_post_reactions_haha_total").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}    
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -1197,15 +1473,25 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_actions_post_reactions_sorry_total").drop();
    console.log(values)
+   if (db.collection("page_actions_post_reactions_sorry_total").indexExists()) {
+    db.collection("page_actions_post_reactions_sorry_total").drop();
     db.collection("page_actions_post_reactions_sorry_total").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_actions_post_reactions_sorry_total").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -1231,15 +1517,26 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_actions_post_reactions_anger_total").drop();
    console.log(values)
+   if (db.collection("page_actions_post_reactions_anger_total").indexExists()) {
+    db.collection("page_actions_post_reactions_anger_total").drop();
     db.collection("page_actions_post_reactions_anger_total").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_actions_post_reactions_anger_total").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}  
   }) 
 
-  res.render('table', { data: values});
+  res.redirect('/viewadmin');
 
 
 })
@@ -1282,12 +1579,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_views_by_profile_tab_total").drop();
    console.log(values)
+   if (db.collection("page_views_by_profile_tab_total").indexExists()) {
+    db.collection("page_views_by_profile_tab_total").drop();
     db.collection("page_views_by_profile_tab_total").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_views_by_profile_tab_total").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
 
@@ -1350,12 +1658,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_views_logged_in_total").drop();
    console.log(values)
+   if (db.collection("page_views_logged_in_total").indexExists()) {
+    db.collection("page_views_logged_in_total").drop();
     db.collection("page_views_logged_in_total").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_views_logged_in_total").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}   
   }) 
 
 
@@ -1383,15 +1702,26 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_views_logout").drop();
    console.log(values)
+   if (db.collection("page_views_logout").indexExists()) {
+    db.collection("page_views_logout").drop();
     db.collection("page_views_logout").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_views_logout").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}
   }) 
 
-  res.render('table', { data: values});
+  res.redirect('/viewadmin');
 
 
 })
@@ -1432,12 +1762,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_positive_feedback_by_type").drop();
    console.log(values)
+   if (db.collection("page_positive_feedback_by_type").indexExists()) {
+    db.collection("page_positive_feedback_by_type").drop();
     db.collection("page_positive_feedback_by_type").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_positive_feedback_by_type").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}
   }) 
 
 
@@ -1467,12 +1808,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
  //  db.collection("page_negative_feedback").drop();
    console.log(values)
+   if (db.collection("page_negative_feedback").indexExists()) {
+    db.collection("page_negative_feedback").drop();
     db.collection("page_negative_feedback").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_negative_feedback").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}
   }) 
 
 
@@ -1533,15 +1885,25 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_consumptions").drop();
    console.log(values)
+   if (db.collection("page_consumptions").indexExists()) {
+    db.collection("page_consumptions").drop();
     db.collection("page_consumptions").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_consumptions").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -1566,15 +1928,26 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_consumptions_by_consumption_type").drop();
    console.log(values)
+   if (db.collection("page_consumptions_by_consumption_type").indexExists()) {
+    db.collection("page_consumptions_by_consumption_type").drop();
     db.collection("page_consumptions_by_consumption_type").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_consumptions_by_consumption_type").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}
   }) 
 
-  res.render('table', { data: values});
+  res.redirect('/viewadmin');
 
 
 })
@@ -1615,12 +1988,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_video_views").drop();
    console.log(values)
+   if (db.collection("page_video_views").indexExists()) {
+    db.collection("page_video_views").drop();
     db.collection("page_video_views").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_video_views").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}
   }) 
 
 
@@ -1650,12 +2034,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
  //  db.collection("page_video_views_paid").drop();
    console.log(values)
+   if (db.collection("page_video_views_paid").indexExists()) {
+    db.collection("page_video_views_paid").drop();
     db.collection("page_video_views_paid").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_video_views_paid").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}
   }) 
 
 
@@ -1683,12 +2078,23 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_video_views_organic").drop();
    console.log(values)
+   if (db.collection("page_video_views_organic").indexExists()) {
+    db.collection("page_video_views_organic").drop();
     db.collection("page_video_views_organic").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_video_views_organic").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}
   }) 
 
 
@@ -1716,15 +2122,25 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_video_views_click_to_play").drop();
    console.log(values)
+   if (db.collection("page_video_views_click_to_play").indexExists()) {
+    db.collection("page_video_views_click_to_play").drop();
     db.collection("page_video_views_click_to_play").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_video_views_click_to_play").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });} 
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -1749,15 +2165,25 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_video_repeat_views").drop();
    console.log(values)
+   if (db.collection("page_video_repeat_views").indexExists()) {
+    db.collection("page_video_repeat_views").drop();
     db.collection("page_video_repeat_views").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_video_repeat_views").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}  
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -1783,15 +2209,25 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_video_complete_views_30s").drop();
    console.log(values)
+   if (db.collection("page_video_complete_views_30s").indexExists()) {
+    db.collection("page_video_complete_views_30s").drop();
     db.collection("page_video_complete_views_30s").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_video_complete_views_30s").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}  
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -1817,15 +2253,25 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_video_complete_views_30s_paid").drop();
    console.log(values)
+   if (db.collection("page_video_complete_views_30s_paid").indexExists()) {
+    db.collection("page_video_complete_views_30s_paid").drop();
     db.collection("page_video_complete_views_30s_paid").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_video_complete_views_30s_paid").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}   
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -1851,15 +2297,25 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_video_complete_views_30s_organic").drop();
    console.log(values)
+   if (db.collection("page_video_complete_views_30s_organic").indexExists()) {
+    db.collection("page_video_complete_views_30s_organic").drop();
     db.collection("page_video_complete_views_30s_organic").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_video_complete_views_30s_organic").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}  
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -1885,15 +2341,25 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_video_views_10s").drop();
    console.log(values)
+   if (db.collection("page_video_views_10s").indexExists()) {
+    db.collection("page_video_views_10s").drop();
     db.collection("page_video_views_10s").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_video_views_10s").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}   
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -1918,15 +2384,25 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_video_views_10s_paid").drop();
    console.log(values)
+   if (db.collection("page_video_views_10s_paid").indexExists()) {
+    db.collection("page_video_views_10s_paid").drop();
     db.collection("page_video_views_10s_paid").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_video_views_10s_paid").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}    
   }) 
 
-  res.render('table', { data: values});
 
 
 })
@@ -1952,15 +2428,26 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
    var db = client.db('mytestingdb');
   // db.collection("page_video_views_10s_organic").drop();
    console.log(values)
+   if (db.collection("page_video_views_10s_organic").indexExists()) {
+    db.collection("page_video_views_10s_organic").drop();
     db.collection("page_video_views_10s_organic").insertMany(values, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("page_video_views_10s_organic").insertMany(values, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}   
   }) 
 
-  res.render('table', { data: values});
+  res.redirect('/viewadmin');
 
 
 })
@@ -2013,13 +2500,24 @@ router.get('/pagead', function(req, res){
 MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
     // Client returned
    var db = client.db('mytestingdb');
-   db.collection("pagefacebook").drop();
+  // db.collection("pagefacebook").drop();
+   if (db.collection("pagefacebook").indexExists()) {
+    db.collection("pagefacebook").drop();
     db.collection("pagefacebook").insertMany(mynewlist, function(err, res) {  
       console.log("connect"+ db)
-
+  
     //  if (err) throw err;  
       console.log("1 record inserted");  
       });  
+  
+  }
+  else {
+    db.collection("pagefacebook").insertMany(mynewlist, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}
   }) 
   res.json(mynewlist);
 

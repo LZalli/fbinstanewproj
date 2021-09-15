@@ -1,0 +1,384 @@
+<%- include('header') %>
+                        <!-- Page-header start -->
+                        <div class="page-header">
+                            <div class="page-block">
+                                <div class="row align-items-center">
+                                    <div class="col-md-8">
+                                        <div class="page-header-title">
+                                            <h5 class="m-b-10">Dashboard</h5>
+                                            <p class="m-b-0">Welcome to Material Able</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <ul class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="index.html"> <i class="fa fa-home"></i> </a>
+                                            </li>
+                                            <li class="breadcrumb-item"><a href="#!">Dashboard</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Page-header end -->
+                        <div class="pcoded-inner-content">
+                            <!-- Main-body start -->
+                            <div class="main-body">
+                                <div class="page-wrapper">
+
+                                    <!-- Page body start -->
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>facebook important</h5>
+                                                        <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <form class="form-material" action="/facebook" method="POST" name="nmyForm" id="myForm">
+                                                           
+                                                            <div class="form-group form-default">
+                                                                <select name="pageid" class="form-control fill">
+                                                                    <option value="opt1">Select One Value Only</option>
+                                                                    <% mylist.forEach((pages)=> { %>
+
+                                                                        <option value="<%= pages.pageid %>"><%= pages.pagename%></option> 
+                                                            
+                                                                        <% }) %>
+                                                                </select>                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">name pages</label>
+                                                            </div>
+                                                         
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date" class="form-control" name="startdate">
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Start-date</label>
+                                                            </div>
+                                                       
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date"  class="form-control" name="enddate">
+                                                                <span class="form-bar"></span>
+                                                                
+                                                                <label class="float-label">End-date</label>
+                                                            </div>
+                                                       
+                                                            <button  type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>Page fans</h5>
+                                                        <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <form class="form-material" action="/pagefans" method="POST" name="nmyForm" id="myForm">
+                                                           
+                                                            <div class="form-group form-default">
+                                                                <select name="pageid" class="form-control fill" >
+                                                                    <option value="opt1">Select One Value Only</option>
+                                                                    <% mylist.forEach((pages)=> { %>
+
+                                                                        <option value="<%= pages.pageid %>"><%= pages.pagename%></option> 
+                                                            
+                                                                        <% }) %>
+                                                                </select>                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">name pages</label>
+                                                            </div>
+                                                         
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date" class="form-control" name="startdate">
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Start-date</label>
+                                                            </div>
+                                                       
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date"  class="form-control" name="enddate">
+                                                                <span class="form-bar"></span>
+                                                                
+                                                                <label class="float-label">End-date</label>
+                                                            </div>
+                                                       
+                                                            <button  type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>page impression</h5>
+                                                        <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <form class="form-material" action="/pageimpression" method="POST" name="nmyForm" id="myForm">
+                                                           
+                                                            <div class="form-group form-default">
+                                                                <select name="pageid" class="form-control fill">
+                                                                    <option value="opt1">Select One Value Only</option>
+                                                                    <% mylist.forEach((pages)=> { %>
+
+                                                                        <option value="<%= pages.pageid %>"><%= pages.pagename%></option> 
+                                                            
+                                                                        <% }) %>
+                                                                </select>                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">name pages</label>
+                                                            </div>
+                                                         
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date" class="form-control" name="startdate">
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Start-date</label>
+                                                            </div>
+                                                       
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date"  class="form-control" name="enddate">
+                                                                <span class="form-bar"></span>
+                                                                
+                                                                <label class="float-label">End-date</label>
+                                                            </div>
+                                                       
+                                                            <button  type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>page reactions</h5>
+                                                        <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <form class="form-material" action="/pagereactions" method="POST" name="nmyForm" id="myForm">
+                                                            
+                                                            <div class="form-group form-default">
+                                                                <select name="pageid" class="form-control fill">
+                                                                    <option value="opt1">Select One Value Only</option>
+                                                                    <% mylist.forEach((pages)=> { %>
+
+                                                                        <option value="<%= pages.pageid %>"><%= pages.pagename%></option> 
+                                                            
+                                                                        <% }) %>
+                                                                </select>                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">name pages</label>
+                                                            </div>
+                                                         
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date" class="form-control" name="startdate">
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Start-date</label>
+                                                            </div>
+                                                       
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date"  class="form-control" name="enddate">
+                                                                <span class="form-bar"></span>
+                                                                
+                                                                <label class="float-label">End-date</label>
+                                                            </div>
+                                                       
+                                                            <button  type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>page views</h5>
+                                                        <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <form class="form-material" action="/pageviews" method="POST" name="nmyForm" id="myForm">
+                                                          
+                                                            <div class="form-group form-default">
+                                                                <select name="pageid" class="form-control fill">
+                                                                    <option value="opt1">Select One Value Only</option>
+                                                                    <% mylist.forEach((pages)=> { %>
+
+                                                                        <option value="<%= pages.pageid %>"><%= pages.pagename%></option> 
+                                                            
+                                                                        <% }) %>
+                                                                </select>                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">name pages</label>
+                                                            </div>
+                                                         
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date" class="form-control" name="startdate">
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Start-date</label>
+                                                            </div>
+                                                       
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date"  class="form-control" name="enddate">
+                                                                <span class="form-bar"></span>
+                                                                
+                                                                <label class="float-label">End-date</label>
+                                                            </div>
+                                                       
+                                                            <button  type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>page feedback</h5>
+                                                        <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <form class="form-material" action="/pagefdbconsu" method="POST" name="nmyForm" id="myForm">
+                                                           
+                                                            <div class="form-group form-default">
+                                                                <select name="pageid" class="form-control fill">
+                                                                    <option value="opt1">Select One Value Only</option>
+                                                                    <% mylist.forEach((pages)=> { %>
+
+                                                                        <option value="<%= pages.pageid %>"><%= pages.pagename%></option> 
+                                                            
+                                                                        <% }) %>
+                                                                </select>                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">name pages</label>
+                                                            </div>
+                                                         
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date" class="form-control" name="startdate">
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Start-date</label>
+                                                            </div>
+                                                       
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date"  class="form-control" name="enddate">
+                                                                <span class="form-bar"></span>
+                                                                
+                                                                <label class="float-label">End-date</label>
+                                                            </div>
+                                                       
+                                                            <button  type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>page videos</h5>
+                                                        <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <form class="form-material" action="/pagevideos" method="POST" name="nmyForm" id="myForm">
+                                                            
+                                                            <div class="form-group form-default">
+                                                                <select name="pageid" class="form-control fill">
+                                                                    <option value="opt1">Select One Value Only</option>
+                                                                    <% mylist.forEach((pages)=> { %>
+
+                                                                        <option value="<%= pages.pageid %>"><%= pages.pagename%></option> 
+                                                            
+                                                                        <% }) %>
+                                                                </select>                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">name pages</label>
+                                                            </div>
+                                                         
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date" class="form-control" name="startdate">
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Start-date</label>
+                                                            </div>
+                                                       
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date"  class="form-control" name="enddate">
+                                                                <span class="form-bar"></span>
+                                                                
+                                                                <label class="float-label">End-date</label>
+                                                            </div>
+                                                       
+                                                            <button  type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>page posts</h5>
+                                                        <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                                    </div>
+                                                    <div class="card-block">
+                                                            
+                                                            <form class="form-material" action="/Pagepostsfb" method="POST" name="nmyForm" id="myForm">
+                                                            <div class="form-group form-default">
+                                                                <select name="pageid" class="form-control fill">
+                                                                    <option value="opt1">Select One Value Only</option>
+                                                                    <% mylist.forEach((pages)=> { %>
+
+                                                                        <option value="<%= pages.pageid %>"><%= pages.pagename%></option> 
+                                                            
+                                                                        <% }) %>
+                                                                </select>                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">name pages</label>
+                                                            </div>
+                                                         
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date" class="form-control" name="startdate">
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Start-date</label>
+                                                            </div>
+                                                       
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="date"  class="form-control" name="enddate">
+                                                                <span class="form-bar"></span>
+                                                                
+                                                                <label class="float-label">End-date</label>
+                                                            </div>
+                                                       
+                                                            <button  type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div> 
+
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>Instagram page</h5>
+                                                        <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <form class="form-material" action="/instapageid" method="POST" name="nmyForm" id="myForm">
+                                                            
+                                                            <div class="form-group form-default">
+                                                                <select name="pageid" class="form-control fill">
+                                                                    <option value="opt1">Select One Value Only</option>
+                                                                    <% mylist.forEach((pages)=> { %>
+
+                                                                        <option value="<%= pages.pageid %>"><%= pages.pagename%></option> 
+                                                            
+                                                                        <% }) %>
+                                                                </select>                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">name pages</label>
+                                                            </div>                                                       
+                                                            <button  type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <!-- Page body end -->
+                                </div>
+                            </div>
+                            <!-- Main-body end -->
+                            <div id="styleSelector">
+
+                            </div>
+                        </div>
+
+<%- include('footer') %>

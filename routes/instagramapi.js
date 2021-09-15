@@ -29,7 +29,7 @@ router.use((req, res, next) => {
   router.use(methodOverride('_method'));
 
 
-  router.get('/instaid', function(req, res){
+  router.get('/instagram', function(req, res){
    
   
 
@@ -39,10 +39,10 @@ router.use((req, res, next) => {
        var db = client.db('mytestingdb');
        db.collection('Insta_page_id').find({}).toArray(function(err, pageid) {
           // Print the documents returned
-          console.log(pageid)
+          //console.log(pageid)
 
 
-                    res.json(pageid);
+          res.render('instagram', { instagram:pageid});
     
         /**  docs.forEach(function(doc) {
             console.log(doc.name);

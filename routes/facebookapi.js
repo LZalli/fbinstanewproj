@@ -261,7 +261,7 @@ router.get('/postengagements', function(req, res){
      var db = client.db('mytestingdb');
      db.collection('page_post_engagements').find({}).toArray(function(err, postengagements) {
         // Print the documents returned
-        res.json(postengagements);
+        //res.json(postengagements);
   
       /**  docs.forEach(function(doc) {
           console.log(doc.name);
@@ -1428,7 +1428,32 @@ router.get('/organic10s', function(req, res){
 //end
 
 
+//benchmark
+router.get('/benchmark', function(req, res){
+   
+  
 
+  
+  MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+      // Client returned
+     var db = client.db('mytestingdb');
+     db.collection('Benchmark').find({}).toArray(function(err, pagefansgenderage) {
+        // Print the documents returned
+        // res.json(pagefansgenderage);
+  
+      /**  docs.forEach(function(doc) {
+          console.log(doc.name);
+        }); **/
+        // Close the DB
+        client.close();
+  
+        });
+
+  
+    }) 
+  
+   });
+//end
 
   module.exports = router;
   

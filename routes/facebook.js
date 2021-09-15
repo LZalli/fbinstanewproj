@@ -520,7 +520,7 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
     // Client returned
    var db = client.db('mytestingdb');
   // db.collection("page_post_engagements").drop();
-   console.log(values)
+   console.log("valuuuuuuuuuuuuues",values)
    if (db.collection("page_post_engagements").indexExists()) {
     db.collection("page_post_engagements").drop();
     db.collection("page_post_engagements").insertMany(values, function(err, res) {  

@@ -522,78 +522,79 @@ router.post('/instaaudience' , (req,res) => {
  });
  //end Insta_audience_city
  
- // Insta_audience_gender_age
- var agearray = [] ;
+// Insta_audience_gender_age
+var agearray = [] ;
  
- var htt =fetch('https://graph.facebook.com/v10.0/'+instaid+'/insights?metric=audience_gender_age&period=lifetime&access_token='+thenewfbtoken+'')
- 
- .then(res => res.json())
- // .then(text => res.json(text)) 
- 
- .then(info => { 
-   var newar = info.data;
-var token = jwt.sign({ data:newar},'secret');
-//console.log(token);
+var htt =fetch('https://graph.facebook.com/v10.0/'+instaid+'/insights?metric=audience_gender_age&period=lifetime&access_token='+thenewfbtoken+'')
 
-   //console.log(info.data)
-  //  for (var i = 0; i < newar.length; i++){
-  //   console.log("<br><br>array index: " + i);
-  //   var obj = newar[i];
-  //   for (var key in obj){
-  //     var value = obj[key];
-  //     console.log("<br> - " + key + ": " + value);
-  //     data = value.values;
-  //     for (var key in data){
-  //       var infovalue = data[key];
-  //       console.log("<br> - " + key + ": " + infovalue);
-  //     }
+.then(res => res.json())
+// .then(text => res.json(text)) 
 
-   // }
- // }
- /** info.map(obj => renameKey(obj, 'F.13-17','F1317')); **/
-  //  const updateInfo = JSON.stringify(info); 
-  //  console.log(updateInfo) 
-   // console.log(text);
- //var obj = JSON.parse(text);
- //var obj = JSON.stringify(text);
- //var values = obj.data ;
-   // console.log(text);
-  // obj=JSON.parse(JSON.stringify(info));
-    //var obj1 = JSON.stringify(body);
- //var values = obj.data ;
-let infodata= {};
- infodata['name']=token;
- agearray.push(infodata);
- MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
-     // Client returned
-    var db = client.db('mytestingdb');
-    //db.collection("Insta_audience_gender_age").drop();
-    if (db.collection("Insta_audience_gender_age").indexExists()) {
-      db.collection("Insta_audience_gender_age").drop();
-      db.collection("Insta_audience_gender_age").insertMany(agearray, function(err, res) {  
-        console.log("connect"+ db)
-    
-      //  if (err) throw err;  
-        console.log("1 record inserted");  
-        });  
-    
-    }
-    else {
-      db.collection("Insta_audience_gender_age").insertMany(agearray, function(err, res) {  
-        console.log("connect"+ db)
-    
-      //  if (err) throw err;  
-        console.log("1 record inserted");  
-        });}   
-   })    
- 
- //res.render('table', { data: values});
- 
- })
- .catch(err => {
-   console.log(err);
- });
- //end Insta_audience_gender_age
+.then(info => { 
+  var newar = info.data;
+
+  //console.log(info.data.values);
+  const obj2 = {};
+
+   for (var key in newar){
+     var value = newar[key];
+     console.log("<br> - " + key + ": " + value);
+   
+     data = value['values'];
+var item = data[0].value ; 
+     // console.log(value['values'].value);
+     // console.log(data['value']);
+    console.log(data[0].value);
+
+     for (var key in item){
+       var infovalue = item[key];
+       console.log("<br> - " + key + ": " + infovalue);
+       obj2[key.replace(/[|&;$%@."<>(),]/g, "")] = item[key];
+
+      }
+
+
+
+   
+ }
+
+
+
+
+  
+ agearray.push(obj2);
+MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+    // Client returned
+   var db = client.db('mytestingdb');
+   //db.collection("Insta_audience_gender_age").drop();
+   //console.log(text)
+   if (db.collection("Insta_audience_gender_age").indexExists()) {
+    db.collection("Insta_audience_gender_age").drop();
+    db.collection("Insta_audience_gender_age").insertMany(agearray, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });  
+  
+  }
+  else {
+    db.collection("Insta_audience_gender_age").insertMany(agearray, function(err, res) {  
+      console.log("connect"+ db)
+  
+    //  if (err) throw err;  
+      console.log("1 record inserted");  
+      });}  
+  })    
+res.json(newar);
+
+//res.render('table', { data: values});
+
+})
+.catch(err => {
+  console.log(err);
+});
+//end Insta_audience_gender_age
  
  });
  res.redirect('/instagram');

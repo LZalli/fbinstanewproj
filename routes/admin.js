@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 // JWT plugin
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
-
+var MongoClient = require('mongodb').MongoClient;
 const methodOverride = require('method-override');
 
 
@@ -146,5 +146,31 @@ router.post('/LoginAdmin',(req, res) => {
 
   })
 });
+
+
+router.get('/alluser', function(req, res){
+   
+  
+
+  
+  MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Data', (err, client) => {
+      // Client returned
+     var db = client.db('mytestingdb');
+     db.collection('admins').find({}).toArray(function(err, pagefansgenderage) {
+        // Print the documents returned
+        res.json(pagefansgenderage);
+  
+      /**  docs.forEach(function(doc) {
+          console.log(doc.name);
+        }); **/
+        // Close the DB
+        client.close();
+  
+        });
+
+  
+    }) 
+  
+   });
 //end-of login etudiant
 module.exports = router;

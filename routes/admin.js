@@ -27,45 +27,7 @@ router.use((req, res, next) => {
 });
 router.use(methodOverride('_method'));
 
-router.post('/signup', (req, res) => {
-    if(req.body.password==req.body.confirmPassword){
-        bcrypt.hash(req.body.password, 10).then(
-            hash => {
-                console.log("Hash", hash);
-              
-    
-        const admin = new admins({
-    
-            user: req.body.user,
-            email: req.body.email,
-            password: hash,
-            confirmPassword:hash,
-         
-    
-        });
-    
-    
-        admin.save()
-            .then(
-                result => {
-                    
-                    res.status(200).json({
-                     message: "User added successfully"            
-                     })
-                }
-            ).catch(
-                err => {
-                    console.log('error',err);
-    
-                    res.status(500).json({
-                        error: err
-                    })
-                })
-    });
-    }
-  
-  
-});
+
 //token
   router.get('/adminToken', verifyToken, function(req,res,next){
     return res.status(200).json(decodedToken.token);
@@ -125,53 +87,7 @@ router.delete("/deleteAdmin/:id", (req, res, next) => {
 });
 //Login
 //Login
-router.post('/signin', (req, res) => {
-  let getedUser;
-  console.log(req.body);
-  admins.findOne({ email: req.body.email }).then(
-          user => {
-            console.log('seeeeeeeeeeeeer', user);
-              if (!user) {
-                  res.status(401).json({
-                      message: 'Email invalid'
-                  })
-                  return null;
-              }
-              getedUser = user;
-              console.log("getted user", getedUser);
 
-              return bcrypt.compare(req.body.password, getedUser.password);
-          })
-      .then(result => {
-          if (!result) {
-             
-          }
-          else{
-            if(result === true){
-          let token = jwt.sign({token:admins},'secret', {expiresIn : '1h'});
-          console.log(token);
-            return res.json(token);
-            }else{
-              return res.status(401).json({
-                message: 'Password invalid'
-            })
-            }
-        
-        }
-         //Email and password are valid
-          //Generate Token
-         // const token = jwt.sign({ email: getedUser.email, userId: getedUser._id }, 'secret_key', { expiresIn: '1h' });
-          //console.log('this token', token);
-
-       // res.status(200).json({
-         //     message: "success Authentification",
-           //   token: token
-          //})
-      })
-      .catch(err => {
-   console.log(err);
-      })
-});
 
 
 //adminnew  
@@ -180,7 +96,6 @@ router.post("/Adminadd", (req, res, next) => {
   const admin = new admins({
             user: req.body.user,
             email: req.body.email,
-            tel: req.body.tel,
             password: req.body.password,
             confirmPassword: req.body.password,
     

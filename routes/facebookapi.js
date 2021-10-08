@@ -1439,7 +1439,7 @@ router.get('/benchmark', function(req, res){
      var db = client.db('mytestingdb');
      db.collection('Benchmark').find({}).toArray(function(err, pagefansgenderage) {
         // Print the documents returned
-        // res.json(pagefansgenderage);
+        res.json(pagefansgenderage);
   
       /**  docs.forEach(function(doc) {
           console.log(doc.name);

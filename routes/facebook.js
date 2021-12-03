@@ -217,7 +217,7 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
       console.log("1 record inserted");  
       });}
   }) 
-res.json(obj.data);
+  res.redirect('/viewadmin');
 
 //res.render('table', { data: values});
 
@@ -605,11 +605,11 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
     // Client returned
    var db = client.db('mytestingdb');
   // db.collection("page_fans").drop();
-   console.log(values)
+  // console.log(values)
    if (db.collection("page_fans").indexExists()) {
     db.collection("page_fans").drop();
     db.collection("page_fans").insertMany(values, function(err, res) {  
-      console.log("connect"+ db)
+     // console.log("connect"+ db)
   
     //  if (err) throw err;  
       console.log("1 record inserted");  
@@ -829,7 +829,7 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
       });} 
   }) 
 
-  res.json(obj2);
+  res.redirect('/viewadmin');
 
 
 })

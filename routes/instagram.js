@@ -101,7 +101,7 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
     db.collection("Insta_page_id").drop();
     db.collection("Insta_page_id").insertMany(idarray, function(err, res) {  
       console.log("connect"+ db)
-  
+
     //  if (err) throw err;  
       //console.log("1 record inserted");  
       });  
@@ -116,6 +116,7 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
       });}
   }) 
 //res.json(idarray);
+res.redirect('/viewadmin');
 
 //res.render('table', { data: values});
 
@@ -124,7 +125,6 @@ MongoClient.connect('mongodb+srv://Laith:Azer1234@cluster0.9pyqc.mongodb.net/Dat
   console.log(err);
 });
 });
-res.redirect('/viewadmin');
 
 });
 
@@ -140,17 +140,19 @@ thenewfbtoken = json.access_token;
 //console.log('tokenp'+thenewfbtoken);
  // console.log('tokenp'+thenewfbtoken)
  // Insta_profile_views
+ console.log(json);
  var testarray = [] ;
 var startdate = req.body.startdate;
   var enddate = req.body.enddate;
   var instaid = req.body.instaid;
+  console.log(instaid)
 var htt =fetch('https://graph.facebook.com/v10.0/'+instaid+'/insights?metric=profile_views&since='+startdate+'&until='+enddate+'&period=day&access_token='+thenewfbtoken+'')
 
 .then(res => res.json())
 // .then(text => res.json(text)) 
 
 .then(json => {
-  // console.log(text);
+  console.log(json);
 //var obj = JSON.parse(text);
 //var obj = JSON.stringify(text);
 //var values = obj.data ;
@@ -195,7 +197,7 @@ var htt =fetch('https://graph.facebook.com/v10.0/'+instaid+'/insights?metric=rea
 // .then(text => res.json(text)) 
 
 .then(json => {
-  // console.log(text);
+ console.log(json);
 //var obj = JSON.parse(text);
 //var obj = JSON.stringify(text);
 //var values = obj.data ;
@@ -984,6 +986,7 @@ res.redirect('/instagram');
    
 //start instagram
 router.get('/viewinsta' , (req,res) => {
+
   res.render('instagram');
   })
 //end-of instagram
